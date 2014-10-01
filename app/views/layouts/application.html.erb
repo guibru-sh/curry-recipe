@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<ul>
+  <li><%= link_to "Recipes", recipes_path %></li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+  <% if user_signed_in? %>
+  <li><%= link_to "#{current_user.email}" %></li>
+  <li class="active"><%= link_to "Logout", destroy_user_session_path %></li>
+  <% else %>
+  <li><%= link_to "Login", "#{new_user_session_path}" %></li>
+  <li class="active"><%= link_to "SignUp", new_user_registration_path %></li>
+  <% end %>
+</ul>
+<%= yield %>
+
+</body>
+</html>
